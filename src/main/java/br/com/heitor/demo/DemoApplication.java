@@ -8,8 +8,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.heitor.demo.entities.Categoria;
+import br.com.heitor.demo.entities.CentroDeCusto;
 import br.com.heitor.demo.entities.Produto;
 import br.com.heitor.demo.repositories.CategoriaRepository;
+import br.com.heitor.demo.repositories.CentroDeCustoRepository;
 import br.com.heitor.demo.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -20,6 +22,9 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
+
+	@Autowired
+	private CentroDeCustoRepository centroDeCustoRepository;;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -43,6 +48,10 @@ public class DemoApplication implements CommandLineRunner {
 		p3.getCategorias().addAll(Arrays.asList(cat2));
 		p4.getCategorias().addAll(Arrays.asList(cat2));
 
+		CentroDeCusto cc1 = new CentroDeCusto(null, "22.12", "TesteCc1");
+		CentroDeCusto cc2 = new CentroDeCusto(null, "25.15", "TesteCc2");
+
+		centroDeCustoRepository.saveAll(Arrays.asList(cc1, cc2));
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
 	}
